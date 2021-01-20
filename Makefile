@@ -8,6 +8,7 @@ export GO111MODULE=on
 .PHONY: packages deb test linux darwin windows setup
 
 build:
+	go get github.com/rakyll/statik
 	statik -src=./dashboard
 	go build -ldflags="-X github.com/Shopify/toxiproxy.Version=git-$(shell git rev-parse --short HEAD)" -o $(SERVER_NAME) ./cmd
 	go build -ldflags="-X github.com/Shopify/toxiproxy.Version=git-$(shell git rev-parse --short HEAD)" -o $(CLI_NAME) ./cli
